@@ -99,6 +99,11 @@ a:hover, a:focus {
     
 }
 
+em.accent {
+    color: #fc5c5d;
+    font-style: normal;
+}
+
 .main-color {
     color:  #fb8386;
 }
@@ -865,6 +870,15 @@ header {
 
 .service:hover h3 {
     color: #fff;
+}
+
+.register-hire {
+    margin-bottom: 20px;
+}
+
+.register-hire button {
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 /*------------------------------------*\
