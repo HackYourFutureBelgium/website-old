@@ -162,7 +162,8 @@ ul, ol {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-position: center;
+    background-image: url('../img/hyf-group-picture.jpg');
+    background-position: top;
     background-size: cover;
     background-attachment: fixed;
 }
