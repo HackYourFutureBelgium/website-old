@@ -91,10 +91,62 @@
 	});
 })(jQuery);
 
+// Donation form & stripe
 (function() {
+	const paymentAPI = 'https://wt-00b50724a47109acb762597a6836a906-0.sandbox.auth0-extend.com/stripe-payment';
+
+	const makePayment = (token) => {
+		const data = {
+			email: token.email,
+			stripeToken: token.id,
+		};
+		
+		if (window.app.id === null) {
+            data.amount = window.app.amount;
+        } else {
+            data.plan = window.app.id;
+		}
+		
+		fetch(`${paymentAPI}/payment`, {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            redirect: "follow",
+            referrer: "no-referrer",
+            body: JSON.stringify(data),
+		})
+		.then(response => response.json())
+		.then((data) => {
+			console.log(data);
+		})
+		.catch(function (error) {
+			console.error('Problem making payement:', error.message);
+		});
+	}
+
+	const stripeHandler = StripeCheckout.configure({
+		key: 'pk_test_LHPtXdKoyZJRcZDKH4JqtRMV',
+		image: 'https://hackyourfuture.be/img/hyflbe.jpg',
+		locale: 'auto',
+		token: makePayment
+	  });
+	  
 	const showDonationForm = (e) => {
 		e.preventDefault();
-		console.log(e);
+		window.app.id = null;
+		window.app.amount = parseInt(newAmount) * 100;
+		stripeHandler.open({
+			name: 'HackYourFuture Belgium',
+			description: 'Donation',
+			zipCode: true,
+			currency: 'eur',
+			amount: window.app.amount
+		});
 	};
 
 	const $amountField = document.getElementById('support-amount');
@@ -126,3 +178,8 @@
 	$amountField.addEventListener('input', updateSelectedAmount);
 	console.log(amounts);
 })();
+
+window.app = {
+	id: null,
+	amount: 0
+};
