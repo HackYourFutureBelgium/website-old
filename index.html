@@ -1090,28 +1090,28 @@
 					<input type="radio" name="support-recurring" id="support-monthly" checked />
 					<label for="support-monthly" class="support-radio-label">Monthly</label>
 					<input type="radio" name="support-recurring" id="support-once" />
-					<label for="support-once" class="support-radio-label">Once</label>
+					<label for="support-once" class="support-radio-label">One time</label>
 					<div class="support__form__form-group">
 						<label for="support-amount-picker">Select your amount</label>
 						<ul class="support-amount-picker" id="support-amount-picker">
-							<li>&euro;<span>5</span></li>
-							<li>&euro;<span>10</span></li>
+							<li class="selected">&euro;<span>10</span></li>
 							<li>&euro;<span>25</span></li>
 							<li>&euro;<span>50</span></li>
 							<li>&euro;<span>100</span></li>
+							<li class="support-amount-picker__alternative">Full scholarship<span>600</span></li>
 						</ul>
 					</div>
 					<label for="support-amount">
 						Amount
 						<div class="icon-input">
 							<i>&euro;</i>
-							<input type="number" name="support-amount"  min="1" step="1" id="support-amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+							<input type="number" name="support-amount" value="10" min="1" step="1" id="support-amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
 						</div>
 						
 					</label>
-					<label for="support-name">
-						Name (leave blank to stay anonymous)
-						<input type="text" name="support-name"  id="support-name" />
+					<label for="support-email">
+						Email
+						<input type="email" name="support-email"  id="support-email" />
 					</label>
 					<input type="submit" value="Donate" class="justify main-btn" />
 				</form>

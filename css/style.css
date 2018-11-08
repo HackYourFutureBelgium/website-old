@@ -1304,20 +1304,38 @@ header {
     display: inline-block;  
 }
 
-.support__form .support-amount-picker {
-    display: flex;
+.support-amount-picker {
     width: 100%;
-    justify-content: space-between;
-}
-
-.support__form .support-amount-picker li {
-    list-style-type: none;
-    padding: 8px;
-    width: 16%;
+    display: flex;
+    justify-content: space-around;
     border: 2px solid #6195FF;
     border-radius: 3px;
+}
+
+.support-amount-picker li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 6px;
+    flex-basis: 5;
+    flex-grow: 1;
     text-align: center;
     cursor: pointer;
+    border-right: 2px solid #6195FF;
+}
+
+.support-amount-picker .selected {
+    color: #fff;
+    background: #6195FF;
+}
+
+.support__form .support-amount-picker__alternative {
+    text-align: center;
+    flex-grow: 2;
+    border-right: none;
+}
+
+.support-amount-picker__alternative span {
+    display: none;
 }
 
 /*------------------------------------*\

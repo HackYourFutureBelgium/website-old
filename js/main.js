@@ -89,29 +89,40 @@
 			}
 		}
 	});
+})(jQuery);
 
-	// Support form
-	const $amountField = document.getElementById('support-amount');
-	const donate = (e) => {
+(function() {
+	const showDonationForm = (e) => {
 		e.preventDefault();
 		console.log(e);
+	};
+
+	const $amountField = document.getElementById('support-amount');
+	const amounts = Array.prototype.slice.call(document.querySelectorAll('.support-amount-picker li'))
+		.reduce((items, $listItem) => {
+			const amount = $listItem.querySelector('span').innerText;
+			items[amount] = $listItem;
+			return items;
+		}, {});
+
+	const updateSelectedAmount = (event, amount = null) => {
+		const newAmount = event ? event.currentTarget.value : amount;
+		Object.keys(amounts).forEach((amount) => {
+			amounts[amount].classList.remove('selected');
+		})
+		if (amounts[newAmount]) {
+			amounts[newAmount].classList.add('selected');
+		}
 	};
 
 	const chooseDonationAmount = (e) => {
 		const amount = e.target.matches('span') ? e.target.innerText : e.target.querySelector('span').innerText;
 		$amountField.value = amount;
+		updateSelectedAmount(null, amount);
 	}
 
-	document.getElementById('support-form').addEventListener('submit', donate);
-	document.getElementById('support-amount-picker').addEventListener('click', (e) => {
-		if (e.target.matches('li') || e.target.matches('span')) chooseDonationAmount(e);
-	});
-})(jQuery);
-
-
-
-
-
-
-
-
+	document.getElementById('support-form').addEventListener('submit', showDonationForm);
+	document.getElementById('support-amount-picker').addEventListener('click', chooseDonationAmount);
+	$amountField.addEventListener('input', updateSelectedAmount);
+	console.log(amounts);
+})();
