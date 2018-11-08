@@ -91,6 +91,7 @@
 					<li><a href="#about">About HYF</a></li>
 					<li><a href="#service">Curriculum</a></li>
 					<li><a href="#pricing">Become a Coach</a></li>
+					<li><a href="#support">Support us</a></li>
 					<li><a href="#contact">Contact Us</a></li>
 					<li class="main-btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSd7gOQmiyNrwYC2klIQfTQzUzYWUb6TtKif8-fLCOnzzH9KcQ/viewform?usp=sf_link"target="_blank">APPLY NOW</a></li>
 				</ul>
@@ -1069,8 +1070,57 @@
 	</div>
 	<!--  -->
 
+	<div id="support" class="section md-padding">
+		<div class="container">
+			<div class="section-header text-center">
+				<h2 class="title">Support us</h2>
+			</div>
+			<div class="support-us">
+				<div class="support-us__message">
+					<h3>Support the developers of tomorrow</h3>
+					<p>Help refugees build digital skills for a career in web development. We're a nonprofit that relies on support from people like you. With your support we can keep our programme free of charge for students.</p>
+					<p>By supporting HackYourFuture Belgium you’re helping every year:</p>
+					<ul>
+						<li>150 newcomers get an introduction to web development</li>
+						<li>60 students participate in our intensive 6-months programme</li>
+						<li>40 graduates find a job in the IT sector</li>
+					</ul>
+				</div>
+				<form class="support__form" id="support-form">
+					<input type="radio" name="support-recurring" id="support-monthly" checked />
+					<label for="support-monthly" class="support-radio-label">Monthly</label>
+					<input type="radio" name="support-recurring" id="support-once" />
+					<label for="support-once" class="support-radio-label">Once</label>
+					<div class="support__form__form-group">
+						<label for="support-amount-picker">Select your amount</label>
+						<ul class="support-amount-picker" id="support-amount-picker">
+							<li>&euro;<span>5</span></li>
+							<li>&euro;<span>10</span></li>
+							<li>&euro;<span>25</span></li>
+							<li>&euro;<span>50</span></li>
+							<li>&euro;<span>100</span></li>
+						</ul>
+					</div>
+					<label for="support-amount">
+						Amount
+						<div class="icon-input">
+							<i>&euro;</i>
+							<input type="number" name="support-amount"  min="1" step="1" id="support-amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+						</div>
+						
+					</label>
+					<label for="support-name">
+						Name (leave blank to stay anonymous)
+						<input type="text" name="support-name"  id="support-name" />
+					</label>
+					<input type="submit" value="Donate" class="justify main-btn" />
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- Contact -->
-	<div id="contact" class="section md-padding">
+	<div id="contact" class="section md-padding bg-grey">
 
 		<!-- Container -->
 		<div class="container">

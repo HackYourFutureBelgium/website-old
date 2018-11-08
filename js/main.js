@@ -90,6 +90,22 @@
 		}
 	});
 
+	// Support form
+	const $amountField = document.getElementById('support-amount');
+	const donate = (e) => {
+		e.preventDefault();
+		console.log(e);
+	};
+
+	const chooseDonationAmount = (e) => {
+		const amount = e.target.matches('span') ? e.target.innerText : e.target.querySelector('span').innerText;
+		$amountField.value = amount;
+	}
+
+	document.getElementById('support-form').addEventListener('submit', donate);
+	document.getElementById('support-amount-picker').addEventListener('click', (e) => {
+		if (e.target.matches('li') || e.target.matches('span')) chooseDonationAmount(e);
+	});
 })(jQuery);
 
 

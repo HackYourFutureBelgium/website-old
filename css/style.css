@@ -234,6 +234,26 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     opacity: 1;
 }
 
+.icon-input {
+    position: relative;
+}
+  
+.icon-input > i {
+    position: absolute;
+    display: block;
+    transform: translate(0, -50%);
+    top: 50%;
+    pointer-events: none;
+    width: 25px;
+    text-align: center;
+    font-style: normal;
+}
+  
+.icon-input > input {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
 /* --  Buttons  -- */
 
 .main-btn, .white-btn, .outline-btn {
@@ -1240,7 +1260,65 @@ header {
     margin-right: 5px;
 }
 
+/*------------------------------------*\
+	Support
+\*------------------------------------*/
 
+.support-us {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.support-us__message {
+    width: 45%;
+}
+
+.support-us__message ul {
+    margin-left: 20px;
+}
+
+.support-us__message li {
+    list-style-type: disc;
+}
+
+.support__form {
+    width: 50%;
+}
+
+.support__form label {
+    display: block;
+}
+
+.support__form .support-radio-label {
+    display: inline-block;
+    margin-right: 18px;
+}
+
+.support__form input, .support__form__form-group {
+    display: block;
+    margin-bottom: 26px;
+}
+
+.support__form > input {
+    display: inline-block;  
+}
+
+.support__form .support-amount-picker {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.support__form .support-amount-picker li {
+    list-style-type: none;
+    padding: 8px;
+    width: 16%;
+    border: 2px solid #6195FF;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+}
 
 /*------------------------------------*\
 	Contact
