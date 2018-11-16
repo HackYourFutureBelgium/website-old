@@ -94,6 +94,8 @@
 // Donation form & stripe
 (function() {
 	const paymentAPI = 'https://wt-00b50724a47109acb762597a6836a906-0.sandbox.auth0-extend.com/stripe-payment';
+	const $amountField = document.getElementById('support-amount');
+	const $emailField = document.getElementById('support-email');
 
 	const makePayment = (token) => {
 		const data = {
@@ -139,17 +141,17 @@
 	const showDonationForm = (e) => {
 		e.preventDefault();
 		window.app.id = null;
-		window.app.amount = parseInt(newAmount) * 100;
+		window.app.amount = parseInt($amountField.value) * 100;
 		stripeHandler.open({
 			name: 'HackYourFuture Belgium',
 			description: 'Donation',
 			zipCode: true,
 			currency: 'eur',
-			amount: window.app.amount
+			amount: window.app.amount,
+			email: $emailField.value
 		});
 	};
 
-	const $amountField = document.getElementById('support-amount');
 	const amounts = Array.prototype.slice.call(document.querySelectorAll('.support-amount-picker li'))
 		.reduce((items, $listItem) => {
 			const amount = $listItem.querySelector('span').innerText;
@@ -176,7 +178,6 @@
 	document.getElementById('support-form').addEventListener('submit', showDonationForm);
 	document.getElementById('support-amount-picker').addEventListener('click', chooseDonationAmount);
 	$amountField.addEventListener('input', updateSelectedAmount);
-	console.log(amounts);
 })();
 
 window.app = {
