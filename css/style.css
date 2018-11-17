@@ -1300,6 +1300,14 @@ header {
     margin-bottom: 26px;
 }
 
+.support__form .support-amount {
+    margin-bottom: 0;
+}
+
+.scholarship-message {
+    margin-bottom: 18px;
+}
+
 .support__form > input {
     display: inline-block;  
 }

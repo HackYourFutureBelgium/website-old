@@ -102,7 +102,6 @@
 			email: token.email,
 			stripeToken: token.id,
 		};
-		
 		if (window.app.id === null) {
             data.amount = window.app.amount;
         } else {
@@ -159,14 +158,17 @@
 			return items;
 		}, {});
 
+	const $scholarshipMessage = document.getElementById('scholarship-message');
 	const updateSelectedAmount = (event, amount = null) => {
 		const newAmount = event ? event.currentTarget.value : amount;
 		Object.keys(amounts).forEach((amount) => {
 			amounts[amount].classList.remove('selected');
 		})
-		if (amounts[newAmount]) {
-			amounts[newAmount].classList.add('selected');
-		}
+		if (amounts[newAmount]) amounts[newAmount].classList.add('selected');
+
+		if (parseInt(newAmount) === 2000) $scholarshipMessage.innerText = 'This supports one student for the entirety of the programme.';
+		else $scholarshipMessage.innerText = ' ';
+
 	};
 
 	const chooseDonationAmount = (e) => {

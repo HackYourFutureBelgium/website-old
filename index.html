@@ -1087,10 +1087,10 @@
 					</ul>
 				</div>
 				<form class="support__form" id="support-form">
-					<input type="radio" name="support-recurring" id="support-monthly" checked />
-					<label for="support-monthly" class="support-radio-label">Monthly</label>
-					<input type="radio" name="support-recurring" id="support-once" />
+					<input type="radio" name="support-recurring" id="support-once" checked />
 					<label for="support-once" class="support-radio-label">One time</label>
+					<input type="radio" name="support-recurring" id="support-monthly" />
+					<label for="support-monthly" class="support-radio-label">Monthly</label>
 					<div class="support__form__form-group">
 						<label for="support-amount-picker">Select your amount</label>
 						<ul class="support-amount-picker" id="support-amount-picker">
@@ -1098,17 +1098,18 @@
 							<li>&euro;<span>25</span></li>
 							<li>&euro;<span>50</span></li>
 							<li>&euro;<span>100</span></li>
-							<li class="support-amount-picker__alternative">Full scholarship<span>600</span></li>
+							<li class="support-amount-picker__alternative">Full scholarship<span>2000</span></li>
 						</ul>
 					</div>
+					
 					<label for="support-amount">
 						Amount
 						<div class="icon-input">
 							<i>&euro;</i>
-							<input type="number" name="support-amount" value="10" min="1" step="1" id="support-amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+							<input type="number" name="support-amount" class="support-amount" value="10" min="1" step="1" id="support-amount" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
 						</div>
-						
 					</label>
+					<p class="scholarship-message" id="scholarship-message">&nbsp;</p>
 					<label for="support-email">
 						Email
 						<input type="email" name="support-email"  id="support-email" />
