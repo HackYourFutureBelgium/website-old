@@ -96,16 +96,20 @@
 	const paymentAPI = 'https://wt-00b50724a47109acb762597a6836a906-0.sandbox.auth0-extend.com/stripe-payment';
 	const $amountField = document.getElementById('support-amount');
 	const $emailField = document.getElementById('support-email');
+	const $monthlyRadio = document.getElementById('support-monthly');
+	const $monthlyLabel = document.querySelector('#support-monthly + label');
+	const $oneTimeRadio = document.getElementById('support-once');
 
 	const makePayment = (token) => {
 		const data = {
 			email: token.email,
 			stripeToken: token.id,
 		};
-		if (window.app.id === null) {
+
+		if (window.app.id === null && !$monthlyRadio.checked) {
             data.amount = window.app.amount;
         } else {
-            data.plan = window.app.id;
+            data.plan = `monthly-${parseInt(window.app.amount) / 100}`;
 		}
 		
 		fetch(`${paymentAPI}/payment`, {
@@ -157,6 +161,17 @@
 			items[amount] = $listItem;
 			return items;
 		}, {});
+	
+	const hideMonthly = () => {
+		$monthlyLabel.classList.add('hidden');
+		$monthlyRadio.classList.add('hidden');
+		$oneTimeRadio.checked = true;
+	}
+
+	const showMonthly = () => {
+		$monthlyLabel.classList.remove('hidden');
+		$monthlyRadio.classList.remove('hidden');
+	}
 
 	const $scholarshipMessage = document.getElementById('scholarship-message');
 	const updateSelectedAmount = (event, amount = null) => {
@@ -164,7 +179,13 @@
 		Object.keys(amounts).forEach((amount) => {
 			amounts[amount].classList.remove('selected');
 		})
-		if (amounts[newAmount]) amounts[newAmount].classList.add('selected');
+		if (amounts[newAmount]) {
+			amounts[newAmount].classList.add('selected');
+			if (parseInt(newAmount) === 2000) hideMonthly();
+			else showMonthly();
+		} else {
+			hideMonthly();
+		}
 
 		if (parseInt(newAmount) === 2000) $scholarshipMessage.innerText = 'This supports one student for the entirety of the programme.';
 		else $scholarshipMessage.innerText = ' ';
