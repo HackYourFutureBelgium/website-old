@@ -135,7 +135,7 @@
 	}
 
 	const stripeHandler = StripeCheckout.configure({
-		key: 'pk_test_LHPtXdKoyZJRcZDKH4JqtRMV',
+		key: 'pk_live_mFpKP0JmQWp9mQ2FjetxyzlH',
 		image: 'https://hackyourfuture.be/img/hyflbe.jpg',
 		locale: 'auto',
 		token: makePayment
