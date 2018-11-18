@@ -130,7 +130,7 @@
 			console.log(data);
 		})
 		.catch(function (error) {
-			console.error('Problem making payement:', error.message);
+			console.error('Problem making payment:', error.message);
 		});
 	}
 
