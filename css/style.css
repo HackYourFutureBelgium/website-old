@@ -892,6 +892,10 @@ header {
     color: #fff;
 }
 
+.register-container {
+    padding-bottom: 5px;
+}
+
 .register-hire {
     margin-bottom: 20px;
 }
@@ -899,6 +903,10 @@ header {
 .register-hire button {
     margin-top: 20px;
     margin-bottom: 40px;
+}
+
+.register-hire .register-btn {
+    margin-bottom: 50px;
 }
 
 /*------------------------------------*\
