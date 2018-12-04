@@ -176,6 +176,7 @@
 	const $scholarshipMessage = document.getElementById('scholarship-message');
 	const updateSelectedAmount = (event, amount = null) => {
 		const newAmount = event ? event.currentTarget.value : amount;
+		if (!parseInt(newAmount)) return;
 		Object.keys(amounts).forEach((amount) => {
 			amounts[amount].classList.remove('selected');
 		})
@@ -196,7 +197,7 @@
 		const amount = e.target.matches('span') ? e.target.innerText : e.target.querySelector('span').innerText;
 		$amountField.value = amount;
 		updateSelectedAmount(null, amount);
-	}
+	};
 
 	document.getElementById('support-form').addEventListener('submit', showDonationForm);
 	document.getElementById('support-amount-picker').addEventListener('click', chooseDonationAmount);
