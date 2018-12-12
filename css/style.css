@@ -662,8 +662,10 @@ header {
 .home-content h1 {
   text-transform: uppercase;
 }
+
 .home-content button {
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .header-wrapper h2 {
