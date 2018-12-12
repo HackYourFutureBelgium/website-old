@@ -668,6 +668,10 @@ header {
   margin-bottom: 40px;
 }
 
+.video-section {
+    display: none;
+}
+
 @media screen and (max-height: 800px) {
     .home-content iframe{
         height: 260px;
@@ -677,6 +681,12 @@ header {
 @media screen and (max-height: 720px) {
     .home-content iframe{
         display: none;
+    }
+    .video-section {
+        display: block;
+        margin: 20px;
+        width: 100%;
+        text-align: center;
     }
 }
 
