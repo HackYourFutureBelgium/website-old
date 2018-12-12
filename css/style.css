@@ -668,6 +668,12 @@ header {
   margin-bottom: 40px;
 }
 
+@media screen and (max-height: 800px) {
+    .home-content iframe{
+        display: none;
+    }
+}
+
 .header-wrapper h2 {
     display: inline-block;
     margin-bottom: 0px;
