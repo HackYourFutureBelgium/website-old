@@ -670,6 +670,12 @@ header {
 
 @media screen and (max-height: 800px) {
     .home-content iframe{
+        height: 260px;
+    }
+}
+
+@media screen and (max-height: 720px) {
+    .home-content iframe{
         display: none;
     }
 }
