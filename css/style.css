@@ -1753,6 +1753,24 @@ header {
     padding-bottom: 400px;
   }
 
+.blog-img {
+    height: 160px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
 
+.blog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 170px;
+}
+
+.partner-logos img {
+    max-height: 100%;
+    display: block;
+}
 
 
