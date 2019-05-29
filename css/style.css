@@ -698,6 +698,23 @@ header {
     }
 }
 
+@media screen and (max-width: 720px) {
+    .home-content iframe{
+        display: none;
+    }
+    .video-section {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .video-section {
+        margin: 0;
+    }
+    .video-section iframe{
+        width: 300px;
+    }
+}
+
 .header-wrapper h2 {
     display: inline-block;
     margin-bottom: 0px;
