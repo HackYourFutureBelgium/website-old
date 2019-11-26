@@ -541,8 +541,7 @@ logo-alt
         border-left: 6px solid #fc5c5d;
     }
     .main-nav li a:hover, .main-nav li a:focus {
-        background-color:
-        border-left: 6px solid #fc5c5d;;
+        border-left: 6px solid #fc5c5d;
         color: #FFF;
         opacity: 1;
     }

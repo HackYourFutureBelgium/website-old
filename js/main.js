@@ -95,65 +95,45 @@
 (function() {
 	const paymentAPI = 'https://wt-00b50724a47109acb762597a6836a906-0.sandbox.auth0-extend.com/stripe-payment';
 	const $amountField = document.getElementById('support-amount');
-	const $emailField = document.getElementById('support-email');
 	const $monthlyRadio = document.getElementById('support-monthly');
 	const $monthlyLabel = document.querySelector('#support-monthly + label');
 	const $oneTimeRadio = document.getElementById('support-once');
 
-	const makePayment = (token) => {
-		const data = {
-			email: token.email,
-			stripeToken: token.id,
-		};
+	const stripe = Stripe('pk_live_mFpKP0JmQWp9mQ2FjetxyzlH', {
+		stripeAccount: 'acct_1DUXo0B6dm2WDTHv'
+	});
 
-		if (window.app.id === null && !$monthlyRadio.checked) {
-            data.amount = window.app.amount;
-        } else {
-            data.plan = `monthly-${parseInt(window.app.amount) / 100}`;
-		}
-		
-		fetch(`${paymentAPI}/payment`, {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            credentials: "same-origin",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json; charset=utf-8",
-            },
-            redirect: "follow",
-            referrer: "no-referrer",
-            body: JSON.stringify(data),
-		})
-		.then(response => response.json())
-		.then((data) => {
-			console.log(data);
-		})
-		.catch(function (error) {
-			console.error('Problem making payment:', error.message);
-		});
+	const getPaymentSession = (data) => {
+		return fetch(`${paymentAPI}/session`, {
+			method: 'POST',
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json; charset=utf-8"
+			},
+			body: JSON.stringify(data)
+		}).then(r => r.json())
 	}
 
-	const stripeHandler = StripeCheckout.configure({
-		key: 'pk_live_mFpKP0JmQWp9mQ2FjetxyzlH',
-		image: 'https://hackyourfuture.be/img/hyflbe.jpg',
-		locale: 'auto',
-		token: makePayment
-	  });
-	  
-	const showDonationForm = (e) => {
+	const startPayment = (e) => {
 		e.preventDefault();
-		window.app.id = null;
-		window.app.amount = parseInt($amountField.value) * 100;
-		stripeHandler.open({
-			name: 'HackYourFuture Belgium',
-			description: 'Donation',
-			zipCode: true,
-			currency: 'eur',
-			amount: window.app.amount,
-			email: $emailField.value
-		});
-	};
+		const amount = parseInt($amountField.value) * 100;
+
+		const data = {};
+		if (!$monthlyRadio.checked) data.amount = amount;
+        else data.plan = `monthly-${parseInt(amount) / 100}`;
+		 	
+		getPaymentSession(data)
+			.then((session) => {
+				if (session.error) throw session.error;
+				return stripe.redirectToCheckout({ sessionId: session.id })
+			})
+			.then((result) => {
+				if (result.error) throw session.error;
+			})
+			.catch(err => {
+				console.error(err);
+			});
+	}
 
 	const amounts = Array.prototype.slice.call(document.querySelectorAll('.support-amount-picker li'))
 		.reduce((items, $listItem) => {
@@ -179,14 +159,13 @@
 		if (!parseInt(newAmount)) return;
 		Object.keys(amounts).forEach((amount) => {
 			amounts[amount].classList.remove('selected');
-		})
+		});
+
 		if (amounts[newAmount]) {
 			amounts[newAmount].classList.add('selected');
 			if (parseInt(newAmount) === 2000) hideMonthly();
 			else showMonthly();
-		} else {
-			hideMonthly();
-		}
+		} else hideMonthly();
 
 		if (parseInt(newAmount) === 2000) $scholarshipMessage.innerText = 'This supports one student for the entirety of the programme.';
 		else $scholarshipMessage.innerText = ' ';
@@ -199,12 +178,7 @@
 		updateSelectedAmount(null, amount);
 	};
 
-	document.getElementById('support-form').addEventListener('submit', showDonationForm);
+	document.getElementById('support-form').addEventListener('submit', startPayment);
 	document.getElementById('support-amount-picker').addEventListener('click', chooseDonationAmount);
 	$amountField.addEventListener('input', updateSelectedAmount);
 })();
-
-window.app = {
-	id: null,
-	amount: 0
-};
